@@ -89,3 +89,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 12
+  _rotationSpeed: 50
+  _dragDistanceThreshold: 0.1
+  _dragRotationMaxDistance: 150

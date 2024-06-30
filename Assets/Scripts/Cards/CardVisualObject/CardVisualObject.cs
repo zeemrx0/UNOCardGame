@@ -19,6 +19,15 @@ namespace LNE.Cards
     [SerializeField]
     private float _speed = 12f;
 
+    [SerializeField]
+    private float _tiltSpeed = 60f;
+
+    [SerializeField]
+    private float _tiltDistanceThreshold = 0.1f;
+
+    [SerializeField]
+    private float _tiltMaxDistance = 160f;
+
     private bool _isDragging;
 
     private void Start()
@@ -30,21 +39,46 @@ namespace LNE.Cards
     {
       if (_isDragging)
       {
-        LerpToTargetPosition(TargetPosition, _speed);
+        LerpTowardTargetPosition(TargetPosition, _speed);
       }
       else
       {
-        LerpToTargetPosition(CardBase.transform.position, _speed);
+        LerpTowardTargetPosition(CardBase.transform.position, _speed);
       }
     }
 
-    public void LerpToTargetPosition(Vector3 targetPosition, float speed)
+    public void LerpTowardTargetPosition(Vector3 targetPosition, float speed)
     {
+      // * Lerp position
       transform.position = Vector3.Lerp(
         transform.position,
         targetPosition,
         speed * Time.deltaTime
       );
+
+      Vector3 direction = targetPosition - transform.position;
+
+      // * Lerp rotation to tilt card based on distance
+      if (direction.magnitude > _tiltDistanceThreshold)
+      {
+        float angle = Vector3.SignedAngle(
+          Vector3.up,
+          direction,
+          Vector3.forward
+        );
+
+        angle = angle * direction.magnitude / _tiltMaxDistance;
+        Quaternion rotation = Quaternion.Euler(0, 0, angle);
+        transform.rotation = Quaternion.Lerp(
+          transform.rotation,
+          rotation,
+          _tiltSpeed * Time.deltaTime
+        );
+      }
+      else
+      {
+        transform.rotation = Quaternion.identity;
+      }
     }
 
     public void OnDrag(PointerEventData eventData)
