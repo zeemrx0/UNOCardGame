@@ -1,1 +1,90 @@
-{}
+trackSelection = true
+refreshSearchWindowsInPlayMode = false
+fetchPreview = true
+defaultFlags = 0
+keepOpen = false
+queryFolder = "Assets"
+onBoardingDoNotAskAgain = true
+showPackageIndexes = false
+showStatusBar = false
+scopes = {
+	"picker_window_position_offset.E30DD90A" = "-21.5;164;320;550"
+	"picker_search_text.E30DD90A" = "t:Sprite "
+	"last_search.E30DD90A" = "t:Sprite "
+	"OpenInspectorPreview.E30DD90A" = "0"
+	"currentGroup.E30DD90A" = "all"
+	"picker_window_position_offset.B3997697" = "-21.5;293;320;550"
+	"picker_search_text.B3997697" = "t:CardPresenter "
+	"last_search.B3997697" = "t:CardPresenter "
+	"OpenInspectorPreview.B3997697" = "0"
+	"currentGroup.B3997697" = "all"
+	"picker_window_position_offset.094C492E" = "-27.5;453;320;550"
+	"picker_search_text.094C492E" = "t:CardBasePresenter "
+	"last_search.094C492E" = "t:CardBasePresenter "
+	"OpenInspectorPreview.094C492E" = "0"
+	"currentGroup.094C492E" = "all"
+}
+providers = {
+	packages = {
+		active = true
+		priority = 90
+		defaultAction = null
+	}
+	profilermarkers = {
+		active = false
+		priority = 100
+		defaultAction = null
+	}
+	store = {
+		active = true
+		priority = 100
+		defaultAction = null
+	}
+	log = {
+		active = false
+		priority = 210
+		defaultAction = null
+	}
+	scene = {
+		active = true
+		priority = 50
+		defaultAction = null
+	}
+	find = {
+		active = true
+		priority = 25
+		defaultAction = null
+	}
+	performance = {
+		active = false
+		priority = 100
+		defaultAction = null
+	}
+	adb = {
+		active = false
+		priority = 2500
+		defaultAction = null
+	}
+	asset = {
+		active = true
+		priority = 25
+		defaultAction = null
+	}
+}
+objectSelectors = {
+}
+recentSearches = [
+]
+searchItemFavorites = [
+]
+savedSearchesSortOrder = 0
+showSavedSearchPanel = false
+hideTabs = false
+expandedQueries = [
+]
+queryBuilder = false
+ignoredProperties = "id;name;classname;imagecontentshash"
+helperWidgetCurrentArea = "all"
+disabledIndexers = ""
+minIndexVariations = 2
+findProviderIndexHelper = true
