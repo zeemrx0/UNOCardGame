@@ -1,7 +1,6 @@
 using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
 
 namespace LNE.Cards
 {
@@ -14,7 +13,7 @@ namespace LNE.Cards
     public event Action<Vector3> CardDragging;
     public event Action<CardVisualObject> CardBeginDrag;
     public CardBase CardBase { get; set; }
-    public Vector3 TargetPosition { get; set; }
+    public Vector3 TargetPosition { get; private set; }
 
     [SerializeField]
     private float _speed = 12f;
@@ -37,17 +36,10 @@ namespace LNE.Cards
 
     private void Update()
     {
-      if (_isDragging)
-      {
-        LerpTowardTargetPosition(TargetPosition, _speed);
-      }
-      else
-      {
-        LerpTowardTargetPosition(CardBase.transform.position, _speed);
-      }
+      LerpTowardTargetPosition(_isDragging ? TargetPosition : CardBase.transform.position, _speed);
     }
 
-    public void LerpTowardTargetPosition(Vector3 targetPosition, float speed)
+    private void LerpTowardTargetPosition(Vector3 targetPosition, float speed)
     {
       // * Lerp position
       transform.position = Vector3.Lerp(

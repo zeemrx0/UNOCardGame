@@ -18,10 +18,7 @@ namespace LNE.Cards
     [SerializeField]
     private Transform _cardVisualObjectsContainer;
 
-    private List<CardBase> _cardBaseList = new List<CardBase>();
-
-    private List<CardVisualObject> _cardVisualObjectList =
-      new List<CardVisualObject>();
+    private readonly List<CardBase> _cardBaseList = new();
 
     private CardVisualObject _movingCardVisualObject;
 
@@ -47,7 +44,6 @@ namespace LNE.Cards
           transform,
           _cardVisualObjectsContainer
         );
-        _cardVisualObjectList.Add(cardVisualObject);
 
         cardVisualObject.name = $"Card Visual Object {i}";
         cardVisualObject.transform.SetParent(_cardVisualObjectsContainer);
@@ -64,7 +60,7 @@ namespace LNE.Cards
 
     private void Update()
     {
-      if (_movingCardVisualObject != null)
+      if (_movingCardVisualObject)
       {
         SortCards();
       }
@@ -79,7 +75,7 @@ namespace LNE.Cards
     {
       for (int i = 0; i < _cardBaseList.Count; i++)
       {
-        if (_cardBaseList[i] == _movingCardVisualObject)
+        if (_cardBaseList[i] == _movingCardVisualObject.CardBase)
         {
           continue;
         }
@@ -104,7 +100,7 @@ namespace LNE.Cards
       }
     }
 
-    private void SwapCards(CardBase cardBase1, CardBase cardBase2)
+    private static void SwapCards(CardBase cardBase1, CardBase cardBase2)
     {
       (cardBase2.Index, cardBase1.Index) = (cardBase1.Index, cardBase2.Index);
       cardBase1.transform.SetSiblingIndex(cardBase1.Index);
